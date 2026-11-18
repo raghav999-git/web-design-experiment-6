@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Tech Blog - Experiment 6</title>
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  /* Custom CSS for Reading Progress Bar */
+  .progress-container {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 5px;
+    background: transparent;
+  }
+  .progress-bar {
+    height: 5px;
+    background: #0d6efd;
+    width: 0%;
+  }
+  /* Card hover effect */
+  .blog-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  }
+  .hero-section {
+    background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Reading Progress Bar -->
+<div class="progress-container">
+  <div class="progress-bar" id="myBar"></div>
+</div>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">TechBlog</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Articles</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+          <button class="btn btn-outline-light btn-sm" onclick="toggleDarkMode()" id="themeBtn">🌙 Dark Mode</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero-section">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Welcome to My Tech Blog</h1>
+    <p class="lead">Exploring Web Development, Data Science, and Everything in Between.</p>
+  </div>
+</header>
+
+<!-- Blog Posts Container -->
+<main class="container mb-5">
+  <div class="row g-4">
+    
+    <!-- Blog Post 1 -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 blog-card">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Coding on a laptop">
+        <div class="card-body">
+          <h5 class="card-title">The Future of Web Development</h5>
+          <p class="card-text text-muted">May 15, 2026 · 5 min read</p>
+          <p class="card-text">Discover how AI and new frameworks are changing the way we build websites in 2026 and beyond.</p>
+          <a href="#" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Post 2 -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 blog-card">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Data charts">
+        <div class="card-body">
+          <h5 class="card-title">Why Data Science Matters</h5>
+          <p class="card-text text-muted">May 12, 2026 · 8 min read</p>
+          <p class="card-text">Data is the new oil. Learn how extracting insights from raw data can drive business decisions.</p>
+          <a href="#" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Post 3 -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 blog-card">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Code on a screen">
+        <div class="card-body">
+          <h5 class="card-title">Mastering Bootstrap 5</h5>
+          <p class="card-text text-muted">May 10, 2026 · 4 min read</p>
+          <p class="card-text">A beginner-friendly guide to building responsive layouts quickly using Bootstrap's grid system.</p>
+          <a href="#" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  <!-- Dummy text to make the page scrollable so the progress bar works -->
+  <div class="row mt-5">
+    <div class="col-12 text-center">
+      <h3 class="my-4">More Articles Coming Soon...</h3>
+      <p class="text-muted">Scroll down to see the reading progress bar in action!</p>
+      <br><br><br><br><br><br><br><br><br><br>
+      <p>© 2026 My Tech Blog. All rights reserved.</p>
+    </div>
+  </div>
+</main>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // 1. Reading Progress Bar Logic
+  window.onscroll = function() {
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+    document.getElementById("myBar").style.width = scrolled + "%";
+  };
+
+  // 2. Dark Mode Toggle Logic
+  function toggleDarkMode() {
+    var htmlElement = document.documentElement;
+    var themeBtn = document.getElementById("themeBtn");
+    
+    if (htmlElement.getAttribute('data-bs-theme') === 'dark') {
+      htmlElement.setAttribute('data-bs-theme', 'light');
+      themeBtn.innerHTML = '🌙 Dark Mode';
+    } else {
+      htmlElement.setAttribute('data-bs-theme', 'dark');
+      themeBtn.innerHTML = '☀️ Light Mode';
+    }
+  }
+</script>
+</body>
+</html>
